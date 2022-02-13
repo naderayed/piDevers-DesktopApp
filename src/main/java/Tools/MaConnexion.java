@@ -4,28 +4,33 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class MaConnexion {
+
+    private Connection cnx;
     public String url="jdbc:mysql://localhost:3306/pidevers";
     public String user="root";
     public String pwd ="hanibal";
-    private Connection cnx;
+
     private static MaConnexion mc;
 
-    private MaConnexion(){
-        try{
+    private MaConnexion() {
+        try {
             cnx = DriverManager.getConnection(url, user, pwd);
             System.out.println("Connected Successfully");
-        }
-        catch (SQLException e){
-            System.out.println(e.getMessage());
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
     }
+
     public static MaConnexion getInstance(){
-        if(mc == null)
+        if(mc==null)
             mc = new MaConnexion();
         return mc;
     }
-    public Connection getCnx(){
+
+    public Connection getCnx() {
         return cnx;
     }
+
 }
